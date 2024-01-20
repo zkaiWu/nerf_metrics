@@ -47,11 +47,11 @@ def evaluate():
     brsique_list = []
     niqe_list = []
     lpips_model = lpips.LPIPS(net='vgg').cuda()
-    liqe_model = pyiqa.create_metric('liqe', as_loss=False)
-    maniqa = pyiqa.create_metric('maniqa', as_loss=False)
-    nima = pyiqa.create_metric('nima', as_loss=False)
-    brsique = pyiqa.create_metric('brisque', as_loss=False)
-    niqe = pyiqa.create_metric('niqe', as_loss=False)
+    liqe_model = pyiqa.create_metric('liqe', as_loss=False).cuda()
+    maniqa = pyiqa.create_metric('maniqa', as_loss=False).cuda()
+    nima = pyiqa.create_metric('nima', as_loss=False).cuda()
+    brsique = pyiqa.create_metric('brisque', as_loss=False).cuda()
+    niqe = pyiqa.create_metric('niqe', as_loss=False).cuda()
     for img_path, gt_img_path in zip(input_img_path_list, gt_img_path_list):
         img = Image.open(img_path).convert('RGB')
         gt_img = Image.open(gt_img_path).convert('RGB')
@@ -97,6 +97,15 @@ def evaluate():
     print('nima', np.mean(nima_list))
     print('brisque', np.mean(brsique_list))
     print('niqe', np.mean(niqe_list))
+    with open(os.path.join(args.input_dir, 'metrics.txt'), 'w') as f:
+        f.write('psnr: {}\n'.format(np.mean(psnr_list)))
+        f.write('ssim: {}\n'.format(np.mean(ssim_list)))
+        f.write('lpips: {}\n'.format(np.mean(lpips_list)))
+        f.write('liqe: {}\n'.format(np.mean(liqe_list)))
+        f.write('maniqa: {}\n'.format(np.mean(maniqa_list)))
+        f.write('nima: {}\n'.format(np.mean(nima_list)))
+        f.write('brisque: {}\n'.format(np.mean(brsique_list)))
+        f.write('niqe: {}\n'.format(np.mean(niqe_list)))
 
 
 if __name__ == '__main__':
