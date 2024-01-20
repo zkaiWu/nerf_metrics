@@ -9,13 +9,14 @@ import PIL.Image as Image
 import numpy as np
 import lpips
 import pyiqa
+from tqdm import tqdm
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Blender 64x64 to 256x256 using floyd')
     parser.add_argument('--input_dir', required=True, type=str, help='input image directory')
     parser.add_argument('--gt_dir', required=True, type=str, help='output image directory')
     parser.add_argument('--hold_out', type=int, default=8)
-    parser.add_argument('--metrics', type=str, nargs='+', default=['ssim', 'lpips', 'psnr'])
+    parser.add_argument('--metrics', type=str, nargs='+', default=['ssim', 'lpips', 'psnr', 'liqe', 'maniqa', 'nima', 'brisque', 'niqe'])
 
     args = parser.parse_args()
     return args
@@ -52,7 +53,7 @@ def evaluate():
     nima = pyiqa.create_metric('nima', as_loss=False).cuda()
     brsique = pyiqa.create_metric('brisque', as_loss=False).cuda()
     niqe = pyiqa.create_metric('niqe', as_loss=False).cuda()
-    for img_path, gt_img_path in zip(input_img_path_list, gt_img_path_list):
+    for img_path, gt_img_path in tqdm(zip(input_img_path_list, gt_img_path_list)):
         img = Image.open(img_path).convert('RGB')
         gt_img = Image.open(gt_img_path).convert('RGB')
         img.save('test1.png')
@@ -69,16 +70,16 @@ def evaluate():
             ssim_list.append(nerf_metrics.ssim(img, gt_img))
         if 'lpips' in args.metrics:
             lpips_list.append(nerf_metrics.cal_lpips(img, gt_img, lpips_model))
-        if 'liqe' in args.metrics:
-            liqe_list.append(liqe_model(img_path))
+        # if 'liqe' in args.metrics:
+        #     liqe_list.append(liqe_model(img_path))
         if 'maniqa' in args.metrics:
-            maniqa_list.append(maniqa(img_path))
+            maniqa_list.append(maniqa(img_path).cpu().numpy())
         if 'nima' in args.metrics:
-            nima_list.append(nima(img_path))
+            nima_list.append(nima(img_path).cpu().numpy())
         if 'brisque' in args.metrics:
-            brsique_list.append(brsique(img_path))
+            brsique_list.append(brsique(img_path).cpu().numpy())
         if 'niqe' in args.metrics:
-            niqe_list.append(niqe(img_path))
+            niqe_list.append(niqe(img_path).cpu().numpy())
 
     # # max_idx = np.argmax(ssim_list)
     # ssim_list = np.array(ssim_list)
@@ -92,7 +93,7 @@ def evaluate():
     print('psnr: ', np.mean(psnr_list))
     print('ssim: ', np.mean(ssim_list))
     print('lpips: ', np.mean(lpips_list))
-    print('liqe', np.mean(liqe_model))
+    # print('liqe', np.mean(liqe_list))
     print('maniqa', np.mean(maniqa_list))
     print('nima', np.mean(nima_list))
     print('brisque', np.mean(brsique_list))
@@ -101,7 +102,7 @@ def evaluate():
         f.write('psnr: {}\n'.format(np.mean(psnr_list)))
         f.write('ssim: {}\n'.format(np.mean(ssim_list)))
         f.write('lpips: {}\n'.format(np.mean(lpips_list)))
-        f.write('liqe: {}\n'.format(np.mean(liqe_list)))
+        # f.write('liqe: {}\n'.format(np.mean(liqe_list)))
         f.write('maniqa: {}\n'.format(np.mean(maniqa_list)))
         f.write('nima: {}\n'.format(np.mean(nima_list)))
         f.write('brisque: {}\n'.format(np.mean(brsique_list)))

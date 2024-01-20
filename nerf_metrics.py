@@ -4,7 +4,6 @@ from torchmetrics.functional import structural_similarity_index_measure
 import PIL
 import numpy as np
 import pyiqa
-import pybrisque
 
 
 def psnr(img_src:torch.Tensor, img_dst:torch.Tensor):
