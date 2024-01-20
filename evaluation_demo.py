@@ -8,6 +8,7 @@ import glob
 import PIL.Image as Image
 import numpy as np
 import lpips
+import pyiqa
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Blender 64x64 to 256x256 using floyd')
@@ -40,7 +41,17 @@ def evaluate():
     psnr_list = []
     ssim_list = []
     lpips_list = []
+    liqe_list = []
+    maniqa_list = []
+    nima_list = []
+    brsique_list = []
+    niqe_list = []
     lpips_model = lpips.LPIPS(net='vgg').cuda()
+    liqe_model = pyiqa.create_metric('liqe', as_loss=False)
+    maniqa = pyiqa.create_metric('maniqa', as_loss=False)
+    nima = pyiqa.create_metric('nima', as_loss=False)
+    brsique = pyiqa.create_metric('brisque', as_loss=False)
+    niqe = pyiqa.create_metric('niqe', as_loss=False)
     for img_path, gt_img_path in zip(input_img_path_list, gt_img_path_list):
         img = Image.open(img_path).convert('RGB')
         gt_img = Image.open(gt_img_path).convert('RGB')
@@ -58,6 +69,16 @@ def evaluate():
             ssim_list.append(nerf_metrics.ssim(img, gt_img))
         if 'lpips' in args.metrics:
             lpips_list.append(nerf_metrics.cal_lpips(img, gt_img, lpips_model))
+        if 'liqe' in args.metrics:
+            liqe_list.append(liqe_model(img_path))
+        if 'maniqa' in args.metrics:
+            maniqa_list.append(maniqa(img_path))
+        if 'nima' in args.metrics:
+            nima_list.append(nima(img_path))
+        if 'brisque' in args.metrics:
+            brsique_list.append(brsique(img_path))
+        if 'niqe' in args.metrics:
+            niqe_list.append(niqe(img_path))
 
     # # max_idx = np.argmax(ssim_list)
     # ssim_list = np.array(ssim_list)
@@ -71,6 +92,11 @@ def evaluate():
     print('psnr: ', np.mean(psnr_list))
     print('ssim: ', np.mean(ssim_list))
     print('lpips: ', np.mean(lpips_list))
+    print('liqe', np.mean(liqe_model))
+    print('maniqa', np.mean(maniqa_list))
+    print('nima', np.mean(nima_list))
+    print('brisque', np.mean(brsique_list))
+    print('niqe', np.mean(niqe_list))
 
 
 if __name__ == '__main__':
