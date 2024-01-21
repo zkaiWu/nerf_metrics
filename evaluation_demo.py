@@ -17,6 +17,7 @@ def parse_args():
     parser.add_argument('--gt_dir', required=True, type=str, help='output image directory')
     parser.add_argument('--hold_out', type=int, default=8)
     parser.add_argument('--metrics', type=str, nargs='+', default=['ssim', 'lpips', 'psnr', 'liqe', 'maniqa', 'nima', 'brisque', 'niqe'])
+    parser.add_argument('--type', type=str, default='llff')
 
     args = parser.parse_args()
     return args
@@ -25,8 +26,14 @@ def parse_args():
 def evaluate():
     args = parse_args()
     
-    input_img_path_list = sorted(glob.glob(os.path.join(args.input_dir, '*.png')))
-    gt_img_path_list = sorted(glob.glob(os.path.join(args.gt_dir, '*.png')))
+
+    if args.type == 'blender':
+        input_img_path_list = sorted(glob.glob(os.path.join(args.input_dir, '*.png')), key=lambda x: int(os.path.basename(x).split('.')[0].split('_')[0]))
+        gt_img_path_list = sorted(glob.glob(os.path.join(args.gt_dir, '*.png')), key=lambda x: int(os.path.basename(x).split('.')[0].split('_')[-1]))
+    elif args.type == 'llff':
+        input_img_path_list = sorted(glob.glob(os.path.join(args.input_dir, '*.png')))
+        gt_img_path_list = sorted(glob.glob(os.path.join(args.gt_dir, '*.png')))
+
     if args.hold_out > 0:
         input_img_path_list = [input_img_path_list[i] for i in range(len(input_img_path_list)) if i % args.hold_out == 0]
         gt_img_path_list = [gt_img_path_list[i] for i in range(len(gt_img_path_list)) if i % args.hold_out == 0]
@@ -70,8 +77,9 @@ def evaluate():
             ssim_list.append(nerf_metrics.ssim(img, gt_img))
         if 'lpips' in args.metrics:
             lpips_list.append(nerf_metrics.cal_lpips(img, gt_img, lpips_model))
-        # if 'liqe' in args.metrics:
-        #     liqe_list.append(liqe_model(img_path))
+        if 'liqe' in args.metrics:
+            img_temp = Image.open(img_path).resize((504, 378)).save('temp.png')
+            liqe_list.append(liqe_model('temp.png').cpu().numpy())
         if 'maniqa' in args.metrics:
             maniqa_list.append(maniqa(img_path).cpu().numpy())
         if 'nima' in args.metrics:
@@ -93,7 +101,7 @@ def evaluate():
     print('psnr: ', np.mean(psnr_list))
     print('ssim: ', np.mean(ssim_list))
     print('lpips: ', np.mean(lpips_list))
-    # print('liqe', np.mean(liqe_list))
+    print('liqe', np.mean(liqe_list))
     print('maniqa', np.mean(maniqa_list))
     print('nima', np.mean(nima_list))
     print('brisque', np.mean(brsique_list))
@@ -102,7 +110,7 @@ def evaluate():
         f.write('psnr: {}\n'.format(np.mean(psnr_list)))
         f.write('ssim: {}\n'.format(np.mean(ssim_list)))
         f.write('lpips: {}\n'.format(np.mean(lpips_list)))
-        # f.write('liqe: {}\n'.format(np.mean(liqe_list)))
+        f.write('liqe: {}\n'.format(np.mean(liqe_list)))
         f.write('maniqa: {}\n'.format(np.mean(maniqa_list)))
         f.write('nima: {}\n'.format(np.mean(nima_list)))
         f.write('brisque: {}\n'.format(np.mean(brsique_list)))

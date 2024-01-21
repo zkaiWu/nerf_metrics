@@ -57,7 +57,7 @@ def ssim(img_src:torch.Tensor, img_dst:torch.Tensor, mask=None):
     #                         channel_axis=2, data_range=img_src.max() - img_src.min())
     # ssim_val = compare_ssim(img_src, img_dst, 
     #                         channel_axis=2, data_range=1.0)
-    ssim_val = structural_similarity_index_measure(img_src, img_dst).detach().cpu().numpy()
+    ssim_val = structural_similarity_index_measure(img_src, img_dst, gaussian_kernel=False, kernel_size=11).detach().cpu().numpy()
 
     return ssim_val
 
