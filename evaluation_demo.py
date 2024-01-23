@@ -31,15 +31,20 @@ def evaluate():
         input_img_path_list = sorted(glob.glob(os.path.join(args.input_dir, '*.png')), key=lambda x: int(os.path.basename(x).split('.')[0].split('_')[0]))
         gt_img_path_list = sorted(glob.glob(os.path.join(args.gt_dir, '*.png')), key=lambda x: int(os.path.basename(x).split('.')[0].split('_')[-1]))
     elif args.type == 'llff':
-        input_img_path_list = sorted(glob.glob(os.path.join(args.input_dir, '*.png')))
+        input_img_path_list = sorted(glob.glob(os.path.join(args.input_dir, '*.png')), key=lambda x: int(os.path.basename(x).split('.')[0].split('_')[0]))
         gt_img_path_list = sorted(glob.glob(os.path.join(args.gt_dir, '*.png')))
 
+    print(input_img_path_list)
+    print(gt_img_path_list )
     if args.hold_out > 0:
         input_img_path_list = [input_img_path_list[i] for i in range(len(input_img_path_list)) if i % args.hold_out == 0]
         gt_img_path_list = [gt_img_path_list[i] for i in range(len(gt_img_path_list)) if i % args.hold_out == 0]
     else:
         input_img_path_list = [input_img_path_list[14]]
         gt_img_path_list = [gt_img_path_list[14]]
+
+    print(input_img_path_list)
+    print(gt_img_path_list )
     
     print('input image number: ', len(input_img_path_list))
     print('gt image number: ', len(gt_img_path_list))
@@ -78,6 +83,7 @@ def evaluate():
         if 'lpips' in args.metrics:
             lpips_list.append(nerf_metrics.cal_lpips(img, gt_img, lpips_model))
         if 'liqe' in args.metrics:
+            # img_temp = Image.open(img_path).resize((568, 378)).save('temp.png')
             img_temp = Image.open(img_path).resize((504, 378)).save('temp.png')
             liqe_list.append(liqe_model('temp.png').cpu().numpy())
         if 'maniqa' in args.metrics:
