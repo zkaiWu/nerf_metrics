@@ -1,46 +1,46 @@
 
+CIDX=$1
+
+CUDA_VISIBLE_DEVICES=$CIDX python evaluation_demo.py \
+    --input_dir /home/zhongkaiwu/proj/Mimic3D/out/llff_fixhrgenerateplane_stage2_pgamma6.0_trainingset_504x376_lpipsgan_wogpc_wvd_wdpc_degradation_wmse_betasampling/fern/infer/003800/train_image \
+    --gt_dir  /home/zhongkaiwu/data/dreamfusion_data/llff/nerf_llff_data_252x188_gt/fern/images_8 \
 
 
-CUDA_VISIBLE_DEVICES=1 python evaluation_demo.py \
-    --input_dir /home/zhongkaiwu/proj/Mimic3D/out/llff_252x188_perframe_tv1_demotionblur_ks9_dfrefine_t300/fern/infer/000000/train_image \
-    --gt_dir /home/zhongkaiwu/data/dreamfusion_data/llff/nerf_llff_data_252x188_gt/fern/images_8
-
-
-CUDA_VISIBLE_DEVICES=1 python evaluation_demo.py \
-    --input_dir /home/zhongkaiwu/proj/Mimic3D/out/llff_252x188_perframe_tv1_demotionblur_ks9_dfrefine_t300/flower/infer/000000/train_image \
+CUDA_VISIBLE_DEVICES=$CIDX python evaluation_demo.py \
+    --input_dir /home/zhongkaiwu/proj/Mimic3D/out/llff_fixhrgenerateplane_stage2_pgamma6.0_trainingset_504x376_lpipsgan_wogpc_wvd_wdpc_degradation_wmse_betasampling/flower/infer/003000/train_image \
     --gt_dir /home/zhongkaiwu/data/dreamfusion_data/llff/nerf_llff_data_252x188_gt/flower/images_8 \
 
-# CUDA_VISIBLE_DEVICES=0 python evaluation_demo.py \
-#     --input_dir /home/zhongkaiwu/proj/Mimic3D/out/llff_fixhrgenerateplane_stage2_pgamma6.0_trainingset_252x188_lpipsgan_wogpc_wvd_wdpc_wmse_betasampling_motionblur_ks9_lpips1_allonekernel/flower/infer/004200/train_image \
-#     --gt_dir /home/zhongkaiwu/data/dreamfusion_data/llff/nerf_llff_data_252x188_gt/flower/images_8 \
-
-
-CUDA_VISIBLE_DEVICES=1 python evaluation_demo.py \
-    --input_dir /home/zhongkaiwu/proj/Mimic3D/out/llff_252x188_perframe_tv1_demotionblur_ks9_dfrefine_t300/fortress/infer/000000/train_image \
+CUDA_VISIBLE_DEVICES=$CIDX python evaluation_demo.py \
+    --input_dir /home/zhongkaiwu/proj/Mimic3D/out/llff_fixhrgenerateplane_stage2_pgamma6.0_trainingset_504x376_lpipsgan_wogpc_wvd_wdpc_degradation_wmse_betasampling/horns/infer/003400/train_image \
     --gt_dir /home/zhongkaiwu/data/dreamfusion_data/llff/nerf_llff_data_252x188_gt/fortress/images_8 \
 
 
-CUDA_VISIBLE_DEVICES=1 python evaluation_demo.py \
-    --input_dir /home/zhongkaiwu/proj/Mimic3D/out/llff_252x188_perframe_tv1_demotionblur_ks9_dfrefine_t300/horns/infer/000000/train_image \
+CUDA_VISIBLE_DEVICES=$CIDX python evaluation_demo.py \
+    --input_dir /home/zhongkaiwu/proj/Mimic3D/out/llff_fixhrgenerateplane_stage2_pgamma6.0_trainingset_504x376_lpipsgan_wogpc_wvd_wdpc_degradation_wmse_betasampling/leaves_g6.0_tv1ckpt_lpips1.0/infer/008800/train_image \
     --gt_dir /home/zhongkaiwu/data/dreamfusion_data/llff/nerf_llff_data_252x188_gt/horns/images_8 \
 
 
-CUDA_VISIBLE_DEVICES=1 python evaluation_demo.py \
-    --input_dir /home/zhongkaiwu/proj/Mimic3D/out/llff_252x188_perframe_tv1_demotionblur_ks9_dfrefine_t300/leaves/infer/000000/train_image  \
+CUDA_VISIBLE_DEVICES=$CIDX python evaluation_demo.py \
+    --input_dir /home/zhongkaiwu/proj/Mimic3D/out/llff_fixhrgenerateplane_stage2_pgamma6.0_trainingset_504x376_lpipsgan_wogpc_wvd_wdpc_beta/leaves/infer/004000/train_image \
     --gt_dir /home/zhongkaiwu/data/dreamfusion_data/llff/nerf_llff_data_252x188_gt/leaves/images_8 \
 
 
-CUDA_VISIBLE_DEVICES=1 python evaluation_demo.py \
-    --input_dir /home/zhongkaiwu/proj/Mimic3D/out/llff_252x188_perframe_tv1_demotionblur_ks9_dfrefine_t300/orchids/infer/000000/train_image  \
+CUDA_VISIBLE_DEVICES=$CIDX python evaluation_demo.py \
+    --input_dir /home/zhongkaiwu/proj/Mimic3D/out/llff_fixhrgenerateplane_stage2_pgamma6.0_trainingset_504x376_lpipsgan_wogpc_wvd_wdpc_degradation_wmse_betasampling/orchids_g5.0_tv1ckpt/infer/004000/train_image  \
     --gt_dir /home/zhongkaiwu/data/dreamfusion_data/llff/nerf_llff_data_252x188_gt/orchids/images_8 \
 
-CUDA_VISIBLE_DEVICES=1 python evaluation_demo.py \
-    --input_dir /home/zhongkaiwu/proj/Mimic3D/out/llff_252x188_perframe_tv1_demotionblur_ks9_dfrefine_t300/room/infer/000000/train_image  \
+
+CUDA_VISIBLE_DEVICES=$CIDX python evaluation_demo.py \
+    --input_dir /home/zhongkaiwu/proj/Mimic3D/out/llff_fixhrgenerateplane_stage2_pgamma6.0_trainingset_504x376_lpipsgan_wogpc_wvd_wdpc_degradation_wmse_betasampling/room/infer/004400/train_image  \
     --gt_dir /home/zhongkaiwu/data/dreamfusion_data/llff/nerf_llff_data_252x188_gt/room/images_8 \
 
-CUDA_VISIBLE_DEVICES=1 python evaluation_demo.py \
-    --input_dir /home/zhongkaiwu/proj/Mimic3D/out/llff_252x188_perframe_tv1_demotionblur_ks9_dfrefine_t300/trex/infer/000000/train_image \
+CUDA_VISIBLE_DEVICES=$CIDX python evaluation_demo.py \
+    --input_dir /home/zhongkaiwu/proj/Mimic3D/out/llff_fixhrgenerateplane_stage2_pgamma6.0_trainingset_504x376_lpipsgan_wogpc_wvd_wdpc_degradation_wmse_betasampling/trex/infer/003400/train_image  \
     --gt_dir /home/zhongkaiwu/data/dreamfusion_data/llff/nerf_llff_data_252x188_gt/trex/images_8 \
+
+# CUDA_VISIBLE_DEVICES=0 python evaluation_demo.py \
+#     --input_dir /home/zhongkaiwu/proj/NeRF-SR/checkpoints/nerf-sr-refine/fern \
+#     --gt_dir /home/zhongkaiwu/data/dreamfusion_data/llff/nerf_llff_data_252x188_gt/trex/images_8 \
 
 
 

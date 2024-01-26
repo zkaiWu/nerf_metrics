@@ -13,7 +13,7 @@ from tqdm import tqdm
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Blender 64x64 to 256x256 using floyd')
-    parser.add_argument('--input_dir', required=True, type=str, help='input image directory')
+    parser.add_argument('--input_img_pa', required=True, type=str, help='input image directory')
     parser.add_argument('--gt_dir', required=True, type=str, help='output image directory')
     parser.add_argument('--hold_out', type=int, default=8)
     parser.add_argument('--metrics', type=str, nargs='+', default=['ssim', 'lpips', 'psnr', 'liqe', 'maniqa', 'nima', 'brisque', 'niqe'])
@@ -28,7 +28,7 @@ def evaluate():
     
 
     if args.type == 'blender':
-        input_img_path_list = sorted(glob.glob(os.path.join(args.input_dir, '*.png')), key=lambda x: int(os.path.basename(x).split('.')[0].split('-')[0]))
+        input_img_path_list = sorted(glob.glob(os.path.join(args.input_dir, '*.png')), key=lambda x: int(os.path.basename(x).split('.')[0].split('_')[0]))
         gt_img_path_list = sorted(glob.glob(os.path.join(args.gt_dir, '*.png')), key=lambda x: int(os.path.basename(x).split('.')[0].split('_')[-1]))
     elif args.type == 'llff':
         input_img_path_list = sorted(glob.glob(os.path.join(args.input_dir, '*.png')))

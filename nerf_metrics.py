@@ -57,7 +57,7 @@ def ssim(img_src:torch.Tensor, img_dst:torch.Tensor, mask=None):
     #                         channel_axis=2, data_range=img_src.max() - img_src.min())
     # ssim_val = compare_ssim(img_src, img_dst, 
     #                         channel_axis=2, data_range=1.0)
-    ssim_val = structural_similarity_index_measure(img_src, img_dst, gaussian_kernel=False, kernel_size=11).detach().cpu().numpy()
+    ssim_val = structural_similarity_index_measure(img_src, img_dst).detach().cpu().numpy()
 
     return ssim_val
 
@@ -66,8 +66,8 @@ def cal_lpips(img_src:torch.Tensor, img_dst:torch.Tensor, lpips_model, mask=None
 
     """
     Args:
-        img_src (torch.Tensor): data range [-1, 1], shape [3, H, W] 
-        img_dst (torch.Tensor): data range [-1, 1], shape [3, H, W]  
+        img_src (torch.Tensor): data range [-1, 1], shape [1, 3, H, W] 
+        img_dst (torch.Tensor): data range [-1, 1], shape [1, 3, H, W]  
         mask (_type_, optional): _description_. Defaults to None.
     Returns:
         _type_: _description_
