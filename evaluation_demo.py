@@ -83,9 +83,9 @@ def evaluate():
         if 'lpips' in args.metrics:
             lpips_list.append(nerf_metrics.cal_lpips(img, gt_img, lpips_model))
         if 'liqe' in args.metrics:
-            # img_temp = Image.open(img_path).resize((568, 378)).save('temp.png')
-            img_temp = Image.open(img_path).resize((504, 378)).save('temp.png')
-            liqe_list.append(liqe_model('temp.png').cpu().numpy())
+            img_temp = Image.open(img_path).resize((568, 378)).save('temp.png')
+            # img_temp = Image.open(img_path).resize((504, 378)).save('temp.png')
+            # liqe_list.append(liqe_model('temp.png').cpu().numpy())
         if 'maniqa' in args.metrics:
             maniqa_list.append(maniqa(img_path).cpu().numpy())
         if 'nima' in args.metrics:
