@@ -1,46 +1,34 @@
-
-
-
-CUDA_VISIBLE_DEVICES=4 python evaluation_demo.py \
-    --input_dir /data5/wuzhongkai/proj/NeRFLiX_CVPR2023/output/all_llff_eg3d_nerflix_degradation_wref_full/fern \
-    --gt_dir /data5/wuzhongkai/data/dreamfusion_data/llff/nerf_llff_data_252x188_gt/fern/images_8
-
-
-CUDA_VISIBLE_DEVICES=4 python evaluation_demo.py \
-    --input_dir /data5/wuzhongkai/proj/NeRFLiX_CVPR2023/output/all_llff_eg3d_nerflix_degradation_wref_full/flower \
-    --gt_dir /data5/wuzhongkai/data/dreamfusion_data/llff/nerf_llff_data_252x188_gt/flower/images_8 \
-
 # CUDA_VISIBLE_DEVICES=0 python evaluation_demo.py \
 #     --input_dir /data5/wuzhongkai/proj/Mimic3D/out/llff_fixhrgenerateplane_stage2_pgamma6.0_trainingset_252x188_lpipsgan_wogpc_wvd_wdpc_wmse_betasampling_motionblur_ks9_lpips1_allonekernel/flower/infer/004200/train_image \
 #     --gt_dir /data5/wuzhongkai/data/dreamfusion_data/llff/nerf_llff_data_252x188_gt/flower/images_8 \
 
 
 CUDA_VISIBLE_DEVICES=4 python evaluation_demo.py \
-    --input_dir /data5/wuzhongkai/proj/NeRFLiX_CVPR2023/output/all_llff_eg3d_nerflix_degradation_wref_full/fortress \
+    --input_dir /data5/wuzhongkai/proj/NeRFLiX_CVPR2023/output/all_llff_eg3d_nerflix_degradation_woref/fortress \
     --gt_dir /data5/wuzhongkai/data/dreamfusion_data/llff/nerf_llff_data_252x188_gt/fortress/images_8 \
 
 
-CUDA_VISIBLE_DEVICES=4 python evaluation_demo.py \
-    --input_dir /data5/wuzhongkai/proj/NeRFLiX_CVPR2023/output/all_llff_eg3d_nerflix_degradation_wref_full/horns \
-    --gt_dir /data5/wuzhongkai/data/dreamfusion_data/llff/nerf_llff_data_252x188_gt/horns/images_8\
+# CUDA_VISIBLE_DEVICES=4 python evaluation_demo.py \
+#     --input_dir /data5/wuzhongkai/proj/NeRFLiX_CVPR2023/output/all_llff_eg3d_nerflix_degradation_woref/horns \
+#     --gt_dir /data5/wuzhongkai/data/dreamfusion_data/llff/nerf_llff_data_252x188_gt/horns/images_8\
 
 
-CUDA_VISIBLE_DEVICES=4 python evaluation_demo.py \
-    --input_dir /data5/wuzhongkai/proj/NeRFLiX_CVPR2023/output/all_llff_eg3d_nerflix_degradation_wref_full/leaves  \
-    --gt_dir /data5/wuzhongkai/data/dreamfusion_data/llff/nerf_llff_data_252x188_gt/leaves/images_8 \
+# CUDA_VISIBLE_DEVICES=4 python evaluation_demo.py \
+#     --input_dir /data5/wuzhongkai/proj/NeRFLiX_CVPR2023/output/all_llff_eg3d_nerflix_degradation_woref/leaves  \
+#     --gt_dir /data5/wuzhongkai/data/dreamfusion_data/llff/nerf_llff_data_252x188_gt/leaves/images_8 \
 
 
-CUDA_VISIBLE_DEVICES=4 python evaluation_demo.py \
-    --input_dir /data5/wuzhongkai/proj/NeRFLiX_CVPR2023/output/all_llff_eg3d_nerflix_degradation_wref_full/orchids  \
-    --gt_dir /data5/wuzhongkai/data/dreamfusion_data/llff/nerf_llff_data_252x188_gt/leaves/images_8 \
+# CUDA_VISIBLE_DEVICES=4 python evaluation_demo.py \
+#     --input_dir /data5/wuzhongkai/proj/NeRFLiX_CVPR2023/output/all_llff_eg3d_nerflix_degradation_woref/orchids  \
+#     --gt_dir /data5/wuzhongkai/data/dreamfusion_data/llff/nerf_llff_data_252x188_gt/orchids/images_8 \
 
-CUDA_VISIBLE_DEVICES=4 python evaluation_demo.py \
-    --input_dir /data5/wuzhongkai/proj/NeRFLiX_CVPR2023/output/all_llff_eg3d_nerflix_degradation_wref_full/room  \
-    --gt_dir /data5/wuzhongkai/data/dreamfusion_data/llff/nerf_llff_data_252x188_gt/froomern/images_8 \
+# CUDA_VISIBLE_DEVICES=4 python evaluation_demo.py \
+#     --input_dir /data5/wuzhongkai/proj/NeRFLiX_CVPR2023/output/all_llff_eg3d_nerflix_degradation_woref/room  \
+#     --gt_dir /data5/wuzhongkai/data/dreamfusion_data/llff/nerf_llff_data_252x188_gt/room/images_8 \
 
-CUDA_VISIBLE_DEVICES=4 python evaluation_demo.py \
-    --input_dir /data5/wuzhongkai/proj/NeRFLiX_CVPR2023/output/all_llff_eg3d_nerflix_degradation_wref_full/trex \
-    --gt_dir /data5/wuzhongkai/data/dreamfusion_data/llff/nerf_llff_data_252x188_gt/trex/images_8 \
+# CUDA_VISIBLE_DEVICES=4 python evaluation_demo.py \
+#     --input_dir /data5/wuzhongkai/proj/NeRFLiX_CVPR2023/output/all_llff_eg3d_nerflix_degradation_woref/trex \
+#     --gt_dir /data5/wuzhongkai/data/dreamfusion_data/llff/nerf_llff_data_252x188_gt/trex/images_8 \
 
 
 
