@@ -18,6 +18,8 @@ def parse_args():
     parser.add_argument('--hold_out', type=int, default=8)
     parser.add_argument('--metrics', type=str, nargs='+', default=['ssim', 'lpips', 'psnr', 'liqe', 'maniqa', 'nima', 'brisque', 'niqe'])
     parser.add_argument('--type', type=str, default='llff')
+    parser.add_argument('--whitebg', action='store_true')
+    parser.add_argument('--use_mask', action='store_true')
 
     args = parser.parse_args()
     return args
@@ -65,21 +67,44 @@ def evaluate():
     niqe = pyiqa.create_metric('niqe', as_loss=False).cuda()
     for img_path, gt_img_path in tqdm(zip(input_img_path_list, gt_img_path_list)):
         img = Image.open(img_path).convert('RGB')
-        gt_img = Image.open(gt_img_path).convert('RGB')
+        gt_img = Image.open(gt_img_path)
+        mask = None
+        if gt_img.mode == 'RGBA':
+            if args.whitebg:
+                white_bkgb = Image.new('RGB', gt_img.size, (255, 255, 255, 255))
+                white_bkgb.paste(gt_img, mask=gt_img.split()[3])
+                gt_img = white_bkgb.convert('RGB')
+            else:
+                gt_img = gt_img.convert('RGB')
+            
+            if args.mask:
+                alpha = gt_img.split()[3]
+                mask = alpha.point(lambda i: i > 0 and 255)
+                mask = mask.resize((64, 64), Image.BICUBIC)
+                mask = mask.resize((256, 256), Image.BICUBIC)
+                # mask = mask.resize((512, 512), Image.BICUBIC)
+                mask = mask.point(lambda i: 255 if i > 0 else 0)
+                mask = torch.tensor(np.array(mask)).permute(2, 0, 1).float() / 255.0
+        else:
+            gt_img = gt_img.convert('RGB')
+            if args.use_maks:
+                raise ValueError('mask is not available when no alpha is provided')
+
         img.save('test1.png')
         gt_img.save('test2.png')
         # import pdb; pdb.set_trace()
 
         img = torch.tensor(np.array(img)).permute(2, 0, 1).float() / 255.0
-        img = img * 2 - 1.0
         gt_img = torch.tensor(np.array(gt_img)).permute(2, 0, 1).float() / 255.0
+
+        img = img * 2 - 1.0
         gt_img = gt_img * 2 - 1.0
         if 'psnr' in args.metrics:
             psnr_list.append(nerf_metrics.psnr(img, gt_img))
         if 'ssim' in args.metrics:
-            ssim_list.append(nerf_metrics.ssim(img, gt_img))
+            ssim_list.append(nerf_metrics.ssim(img, gt_img, mask))
         if 'lpips' in args.metrics:
-            lpips_list.append(nerf_metrics.cal_lpips(img, gt_img, lpips_model))
+            lpips_list.append(nerf_metrics.cal_lpips(img, gt_img, lpips_model, mask))
         if 'liqe' in args.metrics:
             if args.type == 'llff':
                 img_temp = Image.open(img_path).resize((504, 378)).save('temp.png')

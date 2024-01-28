@@ -30,15 +30,30 @@ def evaluate():
     maniqa_model = pyiqa.create_metric('maniqa', as_loss=False).cuda()
     nima_model = pyiqa.create_metric('nima', as_loss=False).cuda()
 
-    img_1 = Image.open(args.input_image_path_1)
-    img_2 = Image.open(args.input_image_path_2)
+    img_1 = Image.open(args.input_image_path_1).convert('RGB').resize((256, 256))
+    img_2 = Image.open(args.input_image_path_2).convert('RGB').resize((256, 256))
     gt_img = Image.open(args.gt_image_path)
+    mask = None
+    if gt_img.mode == 'RGBA':
+        mask = gt_img.split()[3]
+        white_background = Image.new('RGBA', gt_img.size, (255, 255, 255, 255))
+        white_background.paste(gt_img, mask=mask)
+        gt_img = white_background.convert('RGB')
+        mask = mask.resize((64, 64)).resize((256, 256))
+        gt_img = gt_img.convert('RGB').resize((256, 256))
+        mask = mask.point(lambda i: 255 if i > 0 else 0)
 
     img_1 = torch.tensor(np.array(img_1)).permute(2, 0, 1).float() / 255.0
-    img_1 = img_1 * 2 - 1.0
     img_2 = torch.tensor(np.array(img_2)).permute(2, 0, 1).float() / 255.0
-    img_2 = img_2 * 2 - 1.0
     gt_img = torch.tensor(np.array(gt_img)).permute(2, 0, 1).float() / 255.0
+    if mask is not None:
+        mask = torch.tensor(np.array(mask)).unsqueeze(0).float() / 255.0
+    if mask is not None:
+        img_1 = img_1 * mask + 1.0 * (1 - mask)
+        img_2 = img_2 * mask + 1.0 * (1 - mask)
+        gt_img = gt_img * mask + 1.0 * (1 - mask)
+    img_1 = img_1 * 2 - 1.0
+    img_2 = img_2 * 2 - 1.0
     gt_img = gt_img * 2 - 1.0
     
     psnr_1 = nerf_metrics.psnr(img_1, gt_img)

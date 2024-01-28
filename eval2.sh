@@ -7,7 +7,7 @@ CUDA_VISIBLE_DEVICES=$CIDX python evaluation_demo.py \
 
 
 CUDA_VISIBLE_DEVICES=$CIDX python evaluation_demo.py \
-    --input_dir /home/zhongkaiwu/proj/Mimic3D/out/llff_fixhrgenerateplane_stage2_pgamma6.0_trainingset_504x376_lpipsgan_wogpc_wvd_wdpc_degradation_wmse_betasampling/flower/infer/003000/train_image \
+    --input_dir  \
     --gt_dir /home/zhongkaiwu/data/dreamfusion_data/llff/nerf_llff_data_252x188_gt/flower/images_8 \
 
 CUDA_VISIBLE_DEVICES=$CIDX python evaluation_demo.py \

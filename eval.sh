@@ -44,45 +44,45 @@
 
 
 
-CUDA_VISIBLE_DEVICES=0 python evaluation_demo.py \
-    --input_dir /home/zhongkaiwu/proj/Mimic3D/out/blender_fixhrgeneratedplane_stage2_pgamma3.0_wogpc_wvd_wdpc_trainiset_onlylpips/chair/infer/000400/eval_image_res256 \
-    --gt_dir /home/zhongkaiwu/data/dreamfusion_data/blender_origin/nerf_synthetic_256_testset_whitebg/chair/test \
-    --type blender &\
+# CUDA_VISIBLE_DEVICES=0 python evaluation_demo.py \
+#     --input_dir /home/zhongkaiwu/proj/Mimic3D/out/blender_drums_fixhrgeneratetriplane_stage2_pgamma3.0_wmse_trainiset_lpipsgan_wvd_wdpc_wogpc_degradation/chair/infer/004600/eval_image_res256 \
+#     --gt_dir /home/zhongkaiwu/data/dreamfusion_data/blender_origin/nerf_synthetic_256_testset_blackbg/chair/test \
+#     --type blender &\
 
-CUDA_VISIBLE_DEVICES=1 python evaluation_demo.py \
-    --input_dir /home/zhongkaiwu/proj/Mimic3D/out/blender_drums_fixplane_stage2_pgamma0.5_wogpc_vd_wmse_trainiset_onlylpips/drums/infer/002200/eval_image_res256 \
-    --gt_dir /home/zhongkaiwu/data/dreamfusion_data/blender_origin/nerf_synthetic_256_testset_whitebg/drums/test  \
-    --type blender &\
+# CUDA_VISIBLE_DEVICES=1 python evaluation_demo.py \
+#     --input_dir /home/zhongkaiwu/proj/Mimic3D/out/blender_drums_fixhrgeneratetriplane_stage2_pgamma3.0_wmse_trainiset_lpipsgan_wvd_wdpc_wogpc_degradation/drums/infer/004600/eval_image \
+#     --gt_dir /home/zhongkaiwu/data/dreamfusion_data/blender_origin/nerf_synthetic_256_testset_blackbg/drums/test  \
+#     --type blender &\
 
 
-CUDA_VISIBLE_DEVICES=2 python evaluation_demo.py \
-    --input_dir /home/zhongkaiwu/proj/Mimic3D/out/blender_fixhrgeneratedplane_stage2_pgamma3.0_wogpc_wvd_wdpc_trainiset_onlylpips/ficus/infer/000400/eval_image_res256 \
-    --gt_dir /home/zhongkaiwu/data/dreamfusion_data/blender_origin/nerf_synthetic_256_testset_whitebg/ficus/test  \
-    --type blender &\
+# CUDA_VISIBLE_DEVICES=2 python evaluation_demo.py \
+#     --input_dir /home/zhongkaiwu/proj/Mimic3D/out/blender_drums_fixhrgeneratetriplane_stage2_pgamma3.0_wmse_trainiset_lpipsgan_wvd_wdpc_wogpc_degradation/ficus/infer/003800/eval_image_res256 \
+#     --gt_dir /home/zhongkaiwu/data/dreamfusion_data/blender_origin/nerf_synthetic_256_testset_whitebg/ficus/test  \
+#     --type blender &\
 
-CUDA_VISIBLE_DEVICES=3 python evaluation_demo.py \
-    --input_dir /home/zhongkaiwu/proj/Mimic3D/out/blender_fixhrgeneratedplane_stage2_pgamma3.0_wogpc_wvd_wdpc_trainiset_onlylpips/hotdog/infer/000400/eval_image_res256 \
-    --gt_dir /home/zhongkaiwu/data/dreamfusion_data/blender_origin/nerf_synthetic_256_testset_whitebg/hotdog/test  \
-    --type blender &\
+# CUDA_VISIBLE_DEVICES=3 python evaluation_demo.py \
+#     --input_dir /home/zhongkaiwu/proj/Mimic3D/out/blender_drums_fixhrgeneratetriplane_stage2_pgamma3.0_wmse_trainiset_lpipsgan_wvd_wdpc_wogpc_degradation/hotdog/infer/003000/eval_image_res256 \
+#     --gt_dir /home/zhongkaiwu/data/dreamfusion_data/blender_origin/nerf_synthetic_256_testset_whitebg/hotdog/test  \
+#     --type blender &\
 
-CUDA_VISIBLE_DEVICES=4 python evaluation_demo.py \
-    --input_dir /home/zhongkaiwu/proj/Mimic3D/out/blender_fixhrgeneratedplane_stage2_pgamma3.0_wogpc_wvd_wdpc_trainiset_onlylpips/lego/infer/000400/eval_image_res256 \
-    --gt_dir /home/zhongkaiwu/data/dreamfusion_data/blender_origin/nerf_synthetic_256_testset_whitebg/lego/test  \
-    --type blender &\
+# CUDA_VISIBLE_DEVICES=4 python evaluation_demo.py \
+#     --input_dir /home/zhongkaiwu/proj/Mimic3D/out/blender_drums_fixhrgeneratetriplane_stage2_pgamma3.0_wmse_trainiset_lpipsgan_wvd_wdpc_wogpc_degradation/lego/infer/003200/eval_image_res256 \
+#     --gt_dir /home/zhongkaiwu/data/dreamfusion_data/blender_origin/nerf_synthetic_256_testset_whitebg/lego/test  \
+#     --type blender &\
 
-CUDA_VISIBLE_DEVICES=5 python evaluation_demo.py \
-    --input_dir /home/zhongkaiwu/proj/Mimic3D/out/blender_fixhrgeneratedplane_stage2_pgamma3.0_wogpc_wvd_wdpc_trainiset_onlylpips/materials/infer/002200/eval_image_res256 \
-    --gt_dir /home/zhongkaiwu/data/dreamfusion_data/blender_origin/nerf_synthetic_256_testset_whitebg/materials/test  \
-    --type blender &\
+# CUDA_VISIBLE_DEVICES=5 python evaluation_demo.py \
+#     --input_dir /home/zhongkaiwu/proj/Mimic3D/out/blender_drums_fixhrgeneratetriplane_stage2_pgamma3.0_wmse_trainiset_lpipsgan_wvd_wdpc_wogpc_degradation/materials/infer/003000/eval_image_res256 \
+#     --gt_dir /home/zhongkaiwu/data/dreamfusion_data/blender_origin/nerf_synthetic_256_testset_whitebg/materials/test  \
+#     --type blender &\
 
-CUDA_VISIBLE_DEVICES=6 python evaluation_demo.py \
-    --input_dir /home/zhongkaiwu/proj/Mimic3D/out/blender_fixhrgeneratedplane_stage2_pgamma3.0_wogpc_wvd_wdpc_trainiset_onlylpips/mic/infer/000400/eval_image_res256 \
-    --gt_dir /home/zhongkaiwu/data/dreamfusion_data/blender_origin/nerf_synthetic_256_testset_whitebg/mic/test  \
-    --type blender &\
+# CUDA_VISIBLE_DEVICES=6 python evaluation_demo.py \
+#     --input_dir /home/zhongkaiwu/proj/Mimic3D/out/blender_drums_fixhrgeneratetriplane_stage2_pgamma3.0_wmse_trainiset_lpipsgan_wvd_wdpc_wogpc_degradation/mic/infer/003200/eval_image_res256 \
+#     --gt_dir /home/zhongkaiwu/data/dreamfusion_data/blender_origin/nerf_synthetic_256_testset_whitebg/mic/test  \
+#     --type blender &\
 
 
 CUDA_VISIBLE_DEVICES=7 python evaluation_demo.py \
-    --input_dir /home/zhongkaiwu/proj/Mimic3D/out/blender_fixhrgeneratedplane_stage2_pgamma3.0_wogpc_wvd_wdpc_trainiset_onlylpips/ship/infer/000400/eval_image_res256 \
+    --input_dir /home/zhongkaiwu/proj/Mimic3D/out/blender_ablation_coarserefine_stage2_pgamma0.5_wmse_trainiset_lpipsgan_wvd_wdpc_wogpc_degradation/ship/infer/000201/eval_image_res256 \
     --gt_dir /home/zhongkaiwu/data/dreamfusion_data/blender_origin/nerf_synthetic_256_testset_whitebg/ship/test  \
     --type blender &\
 
