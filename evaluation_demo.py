@@ -33,7 +33,7 @@ def evaluate():
         input_img_path_list = sorted(glob.glob(os.path.join(args.input_dir, '*.png')), key=lambda x: int(os.path.basename(x).split('.')[0].split('-')[0]))
         gt_img_path_list = sorted(glob.glob(os.path.join(args.gt_dir, '*.png')), key=lambda x: int(os.path.basename(x).split('.')[0].split('_')[-1]))
     elif args.type == 'llff':
-        input_img_path_list = sorted(glob.glob(os.path.join(args.input_dir, '*.png')))
+        input_img_path_list = sorted(glob.glob(os.path.join(args.input_dir, '*.png')), key=lambda x: int(os.path.basename(x).split('.')[0].split('_')[0]))
         gt_img_path_list = sorted(glob.glob(os.path.join(args.gt_dir, '*.png')))
 
     # input_img_path_list = sorted(glob.glob(os.path.join(args.input_dir, '*_pred_fine.png')))
@@ -45,6 +45,9 @@ def evaluate():
     else:
         input_img_path_list = [input_img_path_list[14]]
         gt_img_path_list = [gt_img_path_list[14]]
+
+    print(input_img_path_list)
+    print(gt_img_path_list )
     
     print('input image number: ', len(input_img_path_list))
     print('gt image number: ', len(gt_img_path_list))

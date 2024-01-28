@@ -44,46 +44,46 @@
 
 
 
-# CUDA_VISIBLE_DEVICES=0 python evaluation_demo.py \
-#     --input_dir /home/zhongkaiwu/proj/Mimic3D/out/blender_drums_fixhrgeneratetriplane_stage2_pgamma3.0_wmse_trainiset_lpipsgan_wvd_wdpc_wogpc_degradation/chair/infer/004600/eval_image_res256 \
-#     --gt_dir /home/zhongkaiwu/data/dreamfusion_data/blender_origin/nerf_synthetic_256_testset_blackbg/chair/test \
-#     --type blender &\
+CUDA_VISIBLE_DEVICES=0 python evaluation_demo.py \
+    --input_dir /data5/wuzhongkai/proj/NeRFLiX_CVPR2023/output/blender_nerflix_degradation/chair \
+    --gt_dir /data5/wuzhongkai/proj/NeRFLiX_CVPR2023/output/blender_nerflix_degradation/chair \
+    --type blender &\
 
-# CUDA_VISIBLE_DEVICES=1 python evaluation_demo.py \
-#     --input_dir /home/zhongkaiwu/proj/Mimic3D/out/blender_drums_fixhrgeneratetriplane_stage2_pgamma3.0_wmse_trainiset_lpipsgan_wvd_wdpc_wogpc_degradation/drums/infer/004600/eval_image \
-#     --gt_dir /home/zhongkaiwu/data/dreamfusion_data/blender_origin/nerf_synthetic_256_testset_blackbg/drums/test  \
-#     --type blender &\
-
-
-# CUDA_VISIBLE_DEVICES=2 python evaluation_demo.py \
-#     --input_dir /home/zhongkaiwu/proj/Mimic3D/out/blender_drums_fixhrgeneratetriplane_stage2_pgamma3.0_wmse_trainiset_lpipsgan_wvd_wdpc_wogpc_degradation/ficus/infer/003800/eval_image_res256 \
-#     --gt_dir /home/zhongkaiwu/data/dreamfusion_data/blender_origin/nerf_synthetic_256_testset_whitebg/ficus/test  \
-#     --type blender &\
-
-# CUDA_VISIBLE_DEVICES=3 python evaluation_demo.py \
-#     --input_dir /home/zhongkaiwu/proj/Mimic3D/out/blender_drums_fixhrgeneratetriplane_stage2_pgamma3.0_wmse_trainiset_lpipsgan_wvd_wdpc_wogpc_degradation/hotdog/infer/003000/eval_image_res256 \
-#     --gt_dir /home/zhongkaiwu/data/dreamfusion_data/blender_origin/nerf_synthetic_256_testset_whitebg/hotdog/test  \
-#     --type blender &\
-
-# CUDA_VISIBLE_DEVICES=4 python evaluation_demo.py \
-#     --input_dir /home/zhongkaiwu/proj/Mimic3D/out/blender_drums_fixhrgeneratetriplane_stage2_pgamma3.0_wmse_trainiset_lpipsgan_wvd_wdpc_wogpc_degradation/lego/infer/003200/eval_image_res256 \
-#     --gt_dir /home/zhongkaiwu/data/dreamfusion_data/blender_origin/nerf_synthetic_256_testset_whitebg/lego/test  \
-#     --type blender &\
-
-# CUDA_VISIBLE_DEVICES=5 python evaluation_demo.py \
-#     --input_dir /home/zhongkaiwu/proj/Mimic3D/out/blender_drums_fixhrgeneratetriplane_stage2_pgamma3.0_wmse_trainiset_lpipsgan_wvd_wdpc_wogpc_degradation/materials/infer/003000/eval_image_res256 \
-#     --gt_dir /home/zhongkaiwu/data/dreamfusion_data/blender_origin/nerf_synthetic_256_testset_whitebg/materials/test  \
-#     --type blender &\
-
-# CUDA_VISIBLE_DEVICES=6 python evaluation_demo.py \
-#     --input_dir /home/zhongkaiwu/proj/Mimic3D/out/blender_drums_fixhrgeneratetriplane_stage2_pgamma3.0_wmse_trainiset_lpipsgan_wvd_wdpc_wogpc_degradation/mic/infer/003200/eval_image_res256 \
-#     --gt_dir /home/zhongkaiwu/data/dreamfusion_data/blender_origin/nerf_synthetic_256_testset_whitebg/mic/test  \
-#     --type blender &\
+CUDA_VISIBLE_DEVICES=1 python evaluation_demo.py \
+    --input_dir /data5/wuzhongkai/proj/NeRFLiX_CVPR2023/output/blender_nerflix_degradation/drums \
+    --gt_dir /data5/wuzhongkai/proj/NeRFLiX_CVPR2023/output/blender_nerflix_degradation/drums \
+    --type blender &\
 
 
-CUDA_VISIBLE_DEVICES=7 python evaluation_demo.py \
-    --input_dir /home/zhongkaiwu/proj/Mimic3D/out/blender_ablation_coarserefine_stage2_pgamma0.5_wmse_trainiset_lpipsgan_wvd_wdpc_wogpc_degradation/ship/infer/000201/eval_image_res256 \
-    --gt_dir /home/zhongkaiwu/data/dreamfusion_data/blender_origin/nerf_synthetic_256_testset_whitebg/ship/test  \
+CUDA_VISIBLE_DEVICES=2 python evaluation_demo.py \
+    --input_dir /data5/wuzhongkai/proj/NeRFLiX_CVPR2023/output/blender_nerflix_degradation/ficus \
+    --gt_dir /data5/wuzhongkai/proj/NeRFLiX_CVPR2023/output/blender_nerflix_degradation/ficus \
+    --type blender &\
+
+CUDA_VISIBLE_DEVICES=3 python evaluation_demo.py \
+    --input_dir /data5/wuzhongkai/proj/NeRFLiX_CVPR2023/output/blender_nerflix_degradation/hotdog \
+    --gt_dir /data5/wuzhongkai/proj/NeRFLiX_CVPR2023/output/blender_nerflix_degradation/hotdog \
+    --type blender &\
+
+CUDA_VISIBLE_DEVICES=4 python evaluation_demo.py \
+    --input_dir /data5/wuzhongkai/proj/NeRFLiX_CVPR2023/output/blender_nerflix_degradation/lego \
+    --gt_dir /data5/wuzhongkai/proj/NeRFLiX_CVPR2023/output/blender_nerflix_degradation/lego \
+    --type blender &\
+
+CUDA_VISIBLE_DEVICES=5 python evaluation_demo.py \
+    --input_dir /data5/wuzhongkai/proj/NeRFLiX_CVPR2023/output/blender_nerflix_degradation/materials \
+    --gt_dir /data5/wuzhongkai/proj/NeRFLiX_CVPR2023/output/blender_nerflix_degradation/materials \
+    --type blender &\
+
+CUDA_VISIBLE_DEVICES=0 python evaluation_demo.py \
+    --input_dir /data5/wuzhongkai/proj/NeRFLiX_CVPR2023/output/blender_nerflix_degradation/mic \
+    --gt_dir /data5/wuzhongkai/proj/NeRFLiX_CVPR2023/output/blender_nerflix_degradation/mic \
+    --type blender &\
+
+
+CUDA_VISIBLE_DEVICES=1 python evaluation_demo.py \
+    --input_dir /data5/wuzhongkai/proj/NeRFLiX_CVPR2023/output/blender_nerflix_degradation/ship \
+    --gt_dir /data5/wuzhongkai/proj/NeRFLiX_CVPR2023/output/blender_nerflix_degradation/ship \
     --type blender &\
 
 # CUDA_VISIBLE_DEVICES=0 python evaluation_demo.py \
