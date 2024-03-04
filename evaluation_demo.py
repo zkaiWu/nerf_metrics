@@ -47,7 +47,7 @@ def evaluate():
         gt_img_path_list = [gt_img_path_list[14]]
 
     print(input_img_path_list)
-    print(gt_img_path_list )
+    print(gt_img_path_list)
     
     print('input image number: ', len(input_img_path_list))
     print('gt image number: ', len(gt_img_path_list))
@@ -69,28 +69,31 @@ def evaluate():
     brsique = pyiqa.create_metric('brisque', as_loss=False).cuda()
     niqe = pyiqa.create_metric('niqe', as_loss=False).cuda()
     for img_path, gt_img_path in tqdm(zip(input_img_path_list, gt_img_path_list)):
-        img = Image.open(img_path).convert('RGB')
-        gt_img = Image.open(gt_img_path)
+        img = Image.open(img_path).convert('RGB').resize((256, 256))
+        gt_img = Image.open(gt_img_path).convert('RGB').resize((256, 256))
         mask = None
+        print(f'gt mode : {gt_img.mode}')
         if gt_img.mode == 'RGBA':
-            if args.whitebg:
-                white_bkgb = Image.new('RGB', gt_img.size, (255, 255, 255, 255))
-                white_bkgb.paste(gt_img, mask=gt_img.split()[3])
-                gt_img = white_bkgb.convert('RGB')
-            else:
-                gt_img = gt_img.convert('RGB')
-            
-            if args.mask:
+            if args.use_mask:
                 alpha = gt_img.split()[3]
                 mask = alpha.point(lambda i: i > 0 and 255)
                 mask = mask.resize((64, 64), Image.BICUBIC)
                 mask = mask.resize((256, 256), Image.BICUBIC)
                 # mask = mask.resize((512, 512), Image.BICUBIC)
                 mask = mask.point(lambda i: 255 if i > 0 else 0)
-                mask = torch.tensor(np.array(mask)).permute(2, 0, 1).float() / 255.0
+                mask = torch.tensor(np.array(mask)).unsqueeze(0)
+                # import pdb; pdb.set_trace()
+                mask = mask / 255.0
+                # mask = torch.tensor(np.array(mask)).permute(2, 0, 1).float() / 255.0
+            if args.whitebg:
+                white_bkgb = Image.new('RGB', gt_img.size, (255, 255, 255, 255))
+                white_bkgb.paste(gt_img, mask=gt_img.split()[3])
+                gt_img = white_bkgb.convert('RGB')
+            else:
+                gt_img = gt_img.convert('RGB')
         else:
             gt_img = gt_img.convert('RGB')
-            if args.use_maks:
+            if args.use_mask:
                 raise ValueError('mask is not available when no alpha is provided')
 
         img.save('test1.png')
@@ -113,6 +116,7 @@ def evaluate():
                 img_temp = Image.open(img_path).resize((504, 378)).save('temp.png')
                 liqe_list.append(liqe_model('temp.png').cpu().numpy())
             else:
+                print('aaa')
                 liqe_list.append(liqe_model(img_path).cpu().numpy())
         if 'maniqa' in args.metrics:
             maniqa_list.append(maniqa(img_path).cpu().numpy())
